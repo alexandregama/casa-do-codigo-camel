@@ -7,10 +7,11 @@ import org.apache.camel.impl.DefaultCamelContext;
 public class TesteRoteamento {
 
 	public static void main(String[] args) throws Exception {
+		System.out.println("Iniciando o envio do arquivo");
 		CamelContext context = new DefaultCamelContext();
 		
 		context.start();
-		Thread.sleep(30* 1000);
+		Thread.sleep(10* 1000);
 		
 		context.addRoutes(new RouteBuilder() {
 			
@@ -20,6 +21,7 @@ public class TesteRoteamento {
 			}
 		});
 		context.stop();
+		System.out.println("Finalizando o envio do arquivo");
 	}
 	
 }
