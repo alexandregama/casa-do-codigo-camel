@@ -1,6 +1,7 @@
 package br.com.caelum.camel;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -11,13 +12,15 @@ public class TesteRoteamento {
 		CamelContext context = new DefaultCamelContext();
 		
 		context.start();
-		Thread.sleep(10* 1000);
+		Thread.sleep(30* 1000);
 		
 		context.addRoutes(new RouteBuilder() {
 			
 			@Override
 			public void configure() throws Exception {
-				from("file:entrada?delay=5s").to("file:saida");
+				from("file:entrada?delay=5s")
+					.log(LoggingLevel.INFO, "Processando mensagem")
+						.to("file:saida");
 			}
 		});
 		context.stop();
