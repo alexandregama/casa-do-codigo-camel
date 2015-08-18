@@ -26,6 +26,9 @@ public class TesteRoteamentoComValidacao {
 				errorHandler(
 						deadLetterChannel("file:falha")
 							.useOriginalMessage()
+								.maximumRedeliveries(2)
+									.redeliveryDelay(2000)
+										.retryAttemptedLogLevel(LoggingLevel.INFO)
 				);
 			}
 		});
