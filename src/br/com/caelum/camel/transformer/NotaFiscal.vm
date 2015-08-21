@@ -1,0 +1,3 @@
+<nota data="${headers.dataAtual}">
+	${body}
+</nota>
