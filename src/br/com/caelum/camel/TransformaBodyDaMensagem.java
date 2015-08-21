@@ -17,7 +17,8 @@ public class TransformaBodyDaMensagem {
 			public void configure() throws Exception {
 				from("file:entrada-transform?delay=5s").
 					log(LoggingLevel.INFO, "Transformando arquivos").
-						to("file:saida-transform");
+						transform(body(String.class).regexReplaceAll("nomeAutor", "autor")).
+							to("file:saida-transform");
 			}
 		});
 		
